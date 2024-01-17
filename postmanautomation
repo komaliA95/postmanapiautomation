@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "b82ea94b-64b9-4e07-aa2f-d7f8081aa3ef",
+		"name": "sms_collection_1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "32194216",
+		"_collection_link": "https://www.postman.com/komalitesting/workspace/my-learning/collection/32194216-b82ea94b-64b9-4e07-aa2f-d7f8081aa3ef?action=share&source=collection_link&creator=32194216"
+	},
+	"item": [
+		{
+			"name": "tc001_add_new student",
+			"item": [
+				{
+					"name": "add_new_student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validate status code\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate response time \", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"first_name\": \"testing\",\r\n  \"middle_name\": \"hello\",\r\n  \"last_name\": \"world\",\r\n  \"date_of_birth\": \"2/2/1986\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://thetestingworldapi.com/api/studentsDetails"
+					},
+					"response": []
+				},
+				{
+					"name": "fetch_student_details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"validate response status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"true\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://thetestingworldapi.com/api/studentsDetails/10054372"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tc002-update_student_details",
+			"item": [
+				{
+					"name": "update_student_details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validate message\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Update  data success\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Permanent_Address\": {\r\n    \"House_Number\": \"202\",\r\n    \"City\": \"hyd\",\r\n    \"State\": \"Telengana\",\r\n    \"Country\": \"India\",\r\n    \"PhoneNumber\": [\r\n      {\r\n        \"Std_Code\": \"040\",\r\n        \"Home\": \"23234\",\r\n        \"Mobile\": \"8790757938\"\r\n      },\r\n      {\r\n        \"Std_Code\": \"040\",\r\n        \"Home\": \"333344\",\r\n        \"Mobile\": \"476856946893\"\r\n      }\r\n    ]\r\n  },\r\n  \"Current_Address\": {\r\n    \"House_Number\": \"202\",\r\n    \"City\": \"hyderabad1\",\r\n    \"State\": \"Telengana\",\r\n    \"Country\": \"india\",\r\n    \"PhoneNumber\": [\r\n      {\r\n        \"Std_Code\": \"8476985\",\r\n        \"Home\": \"56756847\",\r\n        \"Mobile\": \"46879867983467346\"\r\n      },\r\n      {\r\n        \"Std_Code\": \"65676\",\r\n        \"Home\": \"4786766\",\r\n        \"Mobile\": \"98694689476\"\r\n      }\r\n    ]\r\n  },\r\n  \"stId\": \"10054383\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://thetestingworldapi.com/api/addresses/10054383"
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch_ update details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://thetestingworldapi.com/api/studentsDetails/10054383"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
